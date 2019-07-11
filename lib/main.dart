@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moneydairy/screens/login.dart';
+import 'package:moneydairy/setup/login.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.red,
@@ -94,20 +95,20 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            padding: EdgeInsets.all(12.0),
-            child: Text(
-              "powered by: ",
-              style: TextStyle(
-                color: Colors.white,
-                fontStyle: FontStyle.italic,
-                fontSize: 10,
-              ),
-            ),
-          ),
-        )
+        // Align(
+        //   alignment: Alignment.bottomCenter,
+        //   child: Container(
+        //     padding: EdgeInsets.all(12.0),
+        //     child: Text(
+        //       "powered by: ",
+        //       style: TextStyle(
+        //         color: Colors.white,
+        //         fontStyle: FontStyle.italic,
+        //         fontSize: 10,
+        //       ),
+        //     ),
+        //   ),
+        // )
       ],
     );
   }
