@@ -94,20 +94,20 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
         ),
-//        Align(
-//          alignment: Alignment.bottomCenter,
-//          child: Container(
-//            padding: EdgeInsets.all(12.0),
-//            child: Text(
-        /**             "powered by: ",**/
-//              style: TextStyle(
-//                color: Colors.white,
-//                fontStyle: FontStyle.italic,
-//                fontSize: 10,
-//              ),
-//            ),
-//          ),
-//        )
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            padding: EdgeInsets.all(12.0),
+            child: Text(
+              "powered by: ",
+              style: TextStyle(
+                color: Colors.white,
+                fontStyle: FontStyle.italic,
+                fontSize: 10,
+              ),
+            ),
+          ),
+        )
       ],
     );
   }
