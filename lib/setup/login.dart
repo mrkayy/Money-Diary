@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
+
+//TODO: create varaibles that would hold the userid
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +25,13 @@ class Login extends StatelessWidget {
                 )
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(32.0),
-              child: TextField(
-                decoration: InputDecoration(labelText: 'Userid'),
+            Form(
+              //TODO: implement key for form
+              child: Padding(
+                padding: EdgeInsets.all(32.0),
+                child: TextField(
+                  decoration: InputDecoration(labelText: 'Userid'),
+                ),
               ),
             ),
             Column(
