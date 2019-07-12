@@ -42,16 +42,16 @@ class _SplashScreenState extends State<SplashScreen> {
    *  initState() reroutes to loginPage after 3sec
    *  splashScreen page 
    */
-  // void initState() {
-  //   super.initState();
-  //   Future.delayed(
-  //     Duration(seconds: 3),
-  //     () {
-  //       Navigator.of(context)
-  //           .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-  //     },
-  //   );
-  // }
+  void initState() {
+    super.initState();
+    Future.delayed(
+      Duration(seconds: 3),
+      () {
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +82,11 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Padding(
               padding: EdgeInsets.all(13.0),
               child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login', (Route<dynamic> route) => false);
-                },
+                onTap: null ,
+                // () {
+                //   Navigator.of(context).pushNamedAndRemoveUntil(
+                //       '/login', (Route<dynamic> route) => false);
+                // },
                 child: FlutterLogo(
                     textColor: Colors.black,
                     size: 70,
