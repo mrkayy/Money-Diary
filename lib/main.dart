@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneydairy/setup/login.dart';
+import 'package:moneydairy/screens/dashboard.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         '/login': (context) => Login(),
-        // '/dashboard': (context) => DashBoard(),
+        '/dashboard': (context) => DashBoard(),
       },
       home: SplashScreen(),
     );
