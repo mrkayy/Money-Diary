@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "190053681759",
+    "firebase_url": "https://moneydairy-c01fc.firebaseio.com",
+    "project_id": "moneydairy-c01fc",
+    "storage_bucket": "moneydairy-c01fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190053681759:android:e7342155010d829c",
+        "android_client_info": {
+          "package_name": "com.example.moneydairy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190053681759-qtufval7v6ker22cbc3fsiuff4i4tjfr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moneydairy",
+            "certificate_hash": "92d0500e7c2ac5150d398c28e0a81fa80c406f38"
+          }
+        },
+        {
+          "client_id": "190053681759-tkd336a7fp7u90dctik9ooni213r5b6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeYNd2-AfkGju59L_TL0PiVr3C4qD416w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190053681759-tkd336a7fp7u90dctik9ooni213r5b6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
