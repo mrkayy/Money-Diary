@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneydairy/screens/dashboard.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -67,7 +68,7 @@ class _LoginState extends State<Login> {
                 ],
               ),
             )
-          : Navigator.push(context, MaterialPageRoute())
+          : Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> DashBoard() )
           //Navigator.of(context).pushNamedAndRemoveUntil('/dashboard', (Route<dynamic> route) => ture),
           // Column(
           //   children: <Widget>[
@@ -81,7 +82,7 @@ class _LoginState extends State<Login> {
           //           }),
           //         ))
           //   ],
-          // ),
+          ),
     );
   }
 
