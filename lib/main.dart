@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 // },
                 child: FlutterLogo(
                     textColor: Colors.black,
-                    size: 70,
+                    size: 96,
                     colors: Colors.red,
                     style: FlutterLogoStyle.stacked),
               ),
