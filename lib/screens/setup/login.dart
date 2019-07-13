@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -6,20 +7,20 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool loggedIn = false;
+  // bool loggedIn = false;
 
   final _formKey = GlobalKey<FormState>();
   final mainKey = GlobalKey<ScaffoldState>();
 
-  String _user, _password;
+  String _email, _password;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,  
-      // resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
       key: mainKey,
-      body: loggedIn == false ? Container(
+      body:Container(
               padding: EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           validator: (value) =>
                               !value.contains('@') ? 'invalid email' : null,
-                          onSaved: (value) => _user = value,
+                          onSaved: (value) => _email = value,
                           decoration: InputDecoration(labelText: 'Email'),
                         ),
                         TextFormField(
@@ -67,34 +68,21 @@ class _LoginState extends State<Login> {
                 ],
               ),
             )
-          : Navigator.push(context, MaterialPageRoute())
-          //Navigator.of(context).pushNamedAndRemoveUntil('/dashboard', (Route<dynamic> route) => ture),
-          // Column(
-          //   children: <Widget>[
-          //     Text('Welcome $_user'),
-          //     Padding(
-          //         padding: EdgeInsets.all(10.0),
-          //         child: FlatButton(
-          //           child: Text('logout'),
-          //           onPressed: () => setState((){
-          //             loggedIn = false;
-          //           }),
-          //         ))
-          //   ],
-          // ),
     );
   }
 
-  void onSave() {
+  Future<void> onSave() async {
     var form = _formKey.currentState;
     if (form.validate()) {
       //TODO: add navigator route
       form.save();
-      setState(() {
-        loggedIn = true;
-      });
-      print('form is valid');
-      print('user: $_user & password: $_password');
+      try {
+        FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+        // Navigate to home
+        Navigator.of(context).pushNamedAndRemoveUntil('/dashboard', (Route<dynamic> route) => false);
+      } catch (err) {
+        print(err);
+      }
     } else {
       print('form field error');
     }

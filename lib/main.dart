@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moneydairy/setup/login.dart';
+import 'package:moneydairy/screens/setup/login.dart';
 import 'package:moneydairy/screens/dashboard.dart';
 
 void main() => runApp(MyApp());
@@ -40,22 +40,23 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   /*
-   *  initState() reroutes to loginPage after 3sec
-   *  splashScreen page 
+   *  initState() reroutes to signIn after 3sec
+   *  splashScreen page TODO: check if user has signed within 48hours auto sign in
    */
-  void initState() {
-    super.initState();
-    Future.delayed(
-      Duration(seconds: 3),
-      () {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-      },
-    );
-  }
+  // void initState() {
+  //   super.initState();
+  //   Future.delayed(
+  //     Duration(seconds: 3),
+  //     () {
+  //       Navigator.of(context)
+  //           .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
+  
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
@@ -83,11 +84,10 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Padding(
               padding: EdgeInsets.all(13.0),
               child: GestureDetector(
-                onTap: null ,
-                // () {
-                //   Navigator.of(context).pushNamedAndRemoveUntil(
-                //       '/login', (Route<dynamic> route) => false);
-                // },
+                onTap: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/login', (Route<dynamic> route) => false);
+                },
                 child: FlutterLogo(
                     textColor: Colors.black,
                     size: 70,
@@ -97,21 +97,9 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
         ),
-        // Align(
-        //   alignment: Alignment.bottomCenter,
-        //   child: Container(
-        //     padding: EdgeInsets.all(12.0),
-        //     child: Text(
-        //       "powered by: ",
-        //       style: TextStyle(
-        //         color: Colors.white,
-        //         fontStyle: FontStyle.italic,
-        //         fontSize: 10,
-        //       ),
-        //     ),
-        //   ),
-        // )
       ],
     );
   }
+
+  //TODO: check if user is signedin withing 48hours
 }
