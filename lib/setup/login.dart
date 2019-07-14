@@ -28,19 +28,19 @@ class _LoginState extends State<Login> {
           Align(
             alignment: Alignment.center,
             child: PhysicalModel(
-            shape: BoxShape.circle,
-            borderRadius: BorderRadius.circular(30.0),
-            color: Colors.white,
-            elevation: 10.0,
-            child: Padding(
-              padding: EdgeInsets.all(13.0),
-              child: FlutterLogo(
-                  textColor: Colors.black,
-                  size: 96,
-                  colors: Colors.red,
-                  style: FlutterLogoStyle.stacked),
+              shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(30.0),
+              color: Colors.white,
+              elevation: 10.0,
+              child: Padding(
+                padding: EdgeInsets.all(13.0),
+                child: FlutterLogo(
+                    textColor: Colors.black,
+                    size: 96,
+                    colors: Colors.red,
+                    style: FlutterLogoStyle.stacked),
+              ),
             ),
-          ),
           ),
           // Positioned(
           //   top: 90.0,
@@ -64,7 +64,14 @@ class _LoginState extends State<Login> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       RaisedButton(
-                        onPressed: null,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      UserLogged()));
+                        },
+                        color: Colors.red[900],
                         child: Text(
                           'Login',
                           style: TextStyle(fontSize: 14.0, color: Colors.white),
@@ -89,6 +96,7 @@ class _LoginState extends State<Login> {
   }
 }
 
+//TODO: check last logged in time
 class UserLogged extends StatelessWidget {
   bool loggedIn = false;
 
@@ -117,43 +125,51 @@ class UserLogged extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Form(
-            //TODO: implement key for form
-
-            key: _formKey,
-
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextFormField(
-                  validator: (value) =>
-                      !value.contains('@') ? 'invalid email' : null,
-                  onSaved: (value) => _email = value,
-                  decoration: InputDecoration(labelText: 'Email'),
-                ),
-                TextFormField(
-                  validator: (value) => value.length <= 4
-                      ? 'password must be more than 4 characters'
-                      : null,
-                  onSaved: (value) => _password = value,
-                  decoration: InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                ),
-                SizedBox(height: 24.0),
-                RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  onPressed: onSave,
-                  child: Text(
-                    'login',
-                    style: TextStyle(color: Colors.white),
+      body: SafeArea(
+        minimum: const EdgeInsets.all(10.0),
+        child: Form(
+          //TODO: implement key for form
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text('Login'),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        validator: (value) =>
+                            !value.contains('@') ? 'invalid email' : null,
+                        onSaved: (value) => _email = value,
+                        decoration: InputDecoration(labelText: 'Email'),
+                      ),
+                      TextFormField(
+                        validator: (value) => value.length <= 4
+                            ? 'password must be more than 4 characters'
+                            : null,
+                        onSaved: (value) => _password = value,
+                        decoration: InputDecoration(labelText: 'Password'),
+                        obscureText: true,
+                      ),
+                      SizedBox(height: 24.0),
+                      RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        onPressed: onSave,
+                        child: Text(
+                          'login',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
