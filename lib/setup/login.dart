@@ -6,99 +6,155 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomPadding: false,
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment(-0.1, -0.9),
+                colors: [
+                  Color(0xff8c0606),
+                  Colors.red,
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: PhysicalModel(
+            shape: BoxShape.circle,
+            borderRadius: BorderRadius.circular(30.0),
+            color: Colors.white,
+            elevation: 10.0,
+            child: Padding(
+              padding: EdgeInsets.all(13.0),
+              child: FlutterLogo(
+                  textColor: Colors.black,
+                  size: 96,
+                  colors: Colors.red,
+                  style: FlutterLogoStyle.stacked),
+            ),
+          ),
+          ),
+          // Positioned(
+          //   top: 90.0,
+          //   left: 110.0,
+          //   child: FlutterLogo(
+          //     textColor: Colors.white,
+          //     size: 140,
+          //     // colors: Colors.white,
+          //     style: FlutterLogoStyle.horizontal,
+          //   ),
+          // ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: null,
+                        child: Text(
+                          'Login',
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ),
+                      ),
+                      RaisedButton(
+                        onPressed: null,
+                        child: Text(
+                          'Signup',
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class UserLogged extends StatelessWidget {
   bool loggedIn = false;
 
   final _formKey = GlobalKey<FormState>();
   final mainKey = GlobalKey<ScaffoldState>();
 
-  String _user, _password;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // resizeToAvoidBottomInset: false,  
-      resizeToAvoidBottomPadding: false,
-      key: mainKey,
-      body: loggedIn == false
-          ? Container(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Login',
-                    style: TextStyle(fontSize: 32.0),
-                  ),
-                  // Text(
-                  //   'enter userId',
-                  //   style: TextStyle(fontSize: 12.0),
-                  // ),
-                  Form(
-                    //TODO: implement key for form
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        TextFormField(
-                          validator: (value) =>
-                              !value.contains('@') ? 'invalid email' : null,
-                          onSaved: (value) => _user = value,
-                          decoration: InputDecoration(labelText: 'Email'),
-                        ),
-                        TextFormField(
-                          validator: (value) => value.length <= 4
-                              ? 'password must be more than 4 characters'
-                              : null,
-                          onSaved: (value) => _password = value,
-                          decoration: InputDecoration(labelText: 'Password'),
-                          obscureText: true,
-                        ),
-                        SizedBox(height: 24.0),
-                        RaisedButton(
-                          color: Theme.of(context).accentColor,
-                          onPressed: onSave,
-                          child: Text(
-                            'login',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : Navigator.of(context).pushNamedAndRemoveUntil('/dashboard', (Route<dynamic> route) => false),
-          // Column(
-          //   children: <Widget>[
-          //     Text('Welcome $_user'),
-          //     Padding(
-          //         padding: EdgeInsets.all(10.0),
-          //         child: FlatButton(
-          //           child: Text('logout'),
-          //           onPressed: () => setState((){
-          //             loggedIn = false;
-          //           }),
-          //         ))
-          //   ],
-          // ),
-    );
-  }
+  String _email, _password;
 
   void onSave() {
     var form = _formKey.currentState;
     if (form.validate()) {
       //TODO: add navigator route
       form.save();
-      setState(() {
-        loggedIn = true;
-      });
+      // setState(() {
+      //   loggedIn = true;
+      // });
       print('form is valid');
-      print('user: $_user & password: $_password');
+      print('user: $_email & password: $_password');
     } else {
       print('form field error');
     }
 
     //TODO: add login to firebase
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Form(
+            //TODO: implement key for form
+
+            key: _formKey,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextFormField(
+                  validator: (value) =>
+                      !value.contains('@') ? 'invalid email' : null,
+                  onSaved: (value) => _email = value,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
+                TextFormField(
+                  validator: (value) => value.length <= 4
+                      ? 'password must be more than 4 characters'
+                      : null,
+                  onSaved: (value) => _password = value,
+                  decoration: InputDecoration(labelText: 'Password'),
+                  obscureText: true,
+                ),
+                SizedBox(height: 24.0),
+                RaisedButton(
+                  color: Theme.of(context).accentColor,
+                  onPressed: onSave,
+                  child: Text(
+                    'login',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
