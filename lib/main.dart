@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moneydairy/setup/login.dart';
 import 'package:moneydairy/screens/dashboard.dart';
+import 'package:moneydairy/setup/signup.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,23 +16,13 @@ class MyApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         '/login': (context) => Login(),
+        '/signup': (cotext) => SignUp(),
         '/dashboard': (context) => DashBoard(),
       },
       home: SplashScreen(),
     );
   }
 }
-
-// class SplashScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: FlutterLogo(size: 80.0),
-//       ),
-//     );
-//   }
-// }
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -41,16 +32,15 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   /*
    *  initState() reroutes to loginPage after 3sec
-   *  splashScreen page 
+   *  TODO: splashScreen page load animation in splash screen
    */
   void initState() {
     super.initState();
     Future.delayed(
       Duration(seconds: 3),
       () {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-      },
+        //TODO: animate login and signup button into screen
+        },
     );
   }
 
@@ -82,35 +72,14 @@ class _SplashScreenState extends State<SplashScreen> {
             elevation: 10.0,
             child: Padding(
               padding: EdgeInsets.all(13.0),
-              child: GestureDetector(
-                onTap: null ,
-                // () {
-                //   Navigator.of(context).pushNamedAndRemoveUntil(
-                //       '/login', (Route<dynamic> route) => false);
-                // },
-                child: FlutterLogo(
-                    textColor: Colors.black,
-                    size: 70,
-                    colors: Colors.red,
-                    style: FlutterLogoStyle.stacked),
-              ),
+              child: FlutterLogo(
+                  textColor: Colors.black,
+                  size: 96,
+                  colors: Colors.red,
+                  style: FlutterLogoStyle.stacked),
             ),
           ),
         ),
-        // Align(
-        //   alignment: Alignment.bottomCenter,
-        //   child: Container(
-        //     padding: EdgeInsets.all(12.0),
-        //     child: Text(
-        //       "powered by: ",
-        //       style: TextStyle(
-        //         color: Colors.white,
-        //         fontStyle: FontStyle.italic,
-        //         fontSize: 10,
-        //       ),
-        //     ),
-        //   ),
-        // )
       ],
     );
   }
