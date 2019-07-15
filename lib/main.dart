@@ -40,14 +40,22 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(seconds: 3),
       () {
         //TODO: animate login and signup button into screen
-        },
+      },
     );
   }
+
+  // void passWord() {
+  //   Form(
+  //     child: Column(
+  //       children: <Widget>[TextFormField()],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      fit: StackFit.expand,
+      // fit: StackFit.expand,
       children: <Widget>[
         /* the splash screen background start the stack */
         //TODO: App should network dependencies while splashScreen loads
@@ -71,12 +79,68 @@ class _SplashScreenState extends State<SplashScreen> {
             color: Colors.white,
             elevation: 10.0,
             child: Padding(
-              padding: EdgeInsets.all(13.0),
+              padding: EdgeInsets.all(24.0),
               child: FlutterLogo(
                   textColor: Colors.black,
-                  size: 96,
+                  size: 86,
                   colors: Colors.red,
                   style: FlutterLogoStyle.stacked),
+            ),
+          ),
+        ),
+        Align(
+          heightFactor: 9.0,
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            margin: EdgeInsets.only(left: 32.0, right: 32.0),
+            child: Card(
+              color: Colors.black12,
+              elevation: 0.0,
+              child: Form(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: TextField(
+                    decoration: InputDecoration(labelText: 'password',focusColor: Colors.white,fillColor: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    RaisedButton(
+                      color: Colors.red[900],
+                      child: Text(
+                        'Login',
+                        style: TextStyle(fontSize: 14.0, color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Login()));
+                      },
+                    ),
+                    RaisedButton(
+                      onPressed: null,
+                      child: Text(
+                        'Signup',
+                        style: TextStyle(fontSize: 14.0, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
