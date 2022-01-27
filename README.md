@@ -1,4 +1,4 @@
-# moneydairy
+# moni_diary
 
 A new Flutter project.
 
